@@ -5,8 +5,8 @@
 package cmp_test
 
 import (
-	"cmp"
 	"fmt"
+	"github.com/gogolibs/compare/cmp"
 	"math"
 	"slices"
 	"sort"
