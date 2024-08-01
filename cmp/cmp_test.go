@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"github.com/gogolibs/compare/cmp"
 	"math"
-	"slices"
 	"sort"
 	"testing"
 	"unsafe"
@@ -156,12 +155,15 @@ func ExampleOr_sort() {
 		{"foo", "bob", 4.00},
 	}
 	// Sort by customer first, product second, and last by higher price
-	slices.SortFunc(orders, func(a, b Order) int {
+	// Dmytro Kurkin: remove usage of
+	sort.Slice(orders, func(i, j int) bool {
+		a := orders[i]
+		b := orders[j]
 		return cmp.Or(
 			cmp.Compare(a.Customer, b.Customer),
 			cmp.Compare(a.Product, b.Product),
 			cmp.Compare(b.Price, a.Price),
-		)
+		) < 0
 	})
 	for _, order := range orders {
 		fmt.Printf("%s %s %.2f\n", order.Product, order.Customer, order.Price)
