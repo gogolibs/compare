@@ -1,6 +1,6 @@
 package compare
 
-import "cmp"
+import "github.com/gogolibs/compare/cmp"
 
 type Func[T any] func(item1, item2 T) bool
 
